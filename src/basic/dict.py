@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+从Python 3.6开始，字典按照插入的顺序迭代
+"""
 import operator
+from collections import defaultdict
 
 d1 = {'k1': 'v1', 'k2': 'v2', 'k3': 'v3'}
 d2 = d1.copy()
@@ -29,3 +33,7 @@ print(sorted(d1.items(), key=operator.itemgetter(1), reverse=True))
 
 d1.clear()
 del d1
+
+mydict = defaultdict(lambda: 0)
+# mydict = defaultdict(int)
+print('defaultdict()==>', mydict[1])
