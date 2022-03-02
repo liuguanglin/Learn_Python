@@ -4,12 +4,25 @@
 import getopt
 import sys
 
-options, arg = getopt.getopt(sys.argv[1:], 'u:p:', ['user=', 'pass='])
+
+def usage():
+    print("""Usage:
+    -h|--help show help
+    -u|--user username
+    -p|--pass password
+    """)
+
+
+options, arg = getopt.getopt(sys.argv[1:], 'hu:p:', ['help', 'user=', 'pass='])
+print(f'options: {options}, arg: {arg}')
 try:
     for name, value in options:
+        if name in ('-h', '--help'):
+            usage()
+            exit()
         if name in ('-u', '--user'):
             print(f'user: {value}')
         if name in ('-p', '--pass'):
             print(f'password: {value}')
 except getopt.GetoptError:
-    print('Invaid input.')
+    print('Invalid input.')
