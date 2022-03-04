@@ -25,7 +25,7 @@ dog1 = Dog('xiaohei', 'black')
 # print(dog1.__color)
 assert not hasattr(dog1, '__color')
 # 可从__dict__中查看私有属性的真实名称
-print(dog1._Dog__color)
+print('dog1._Dog__color: ', dog1._Dog__color)
 dog1.get_color()
 dog1.set_color('green')
 dog1.get_color()
@@ -46,4 +46,10 @@ Dog.run = run
 dog1.run()
 dog1.age = 5
 print(f'{dog1.name} is {dog1.age} years old.')
+food = getattr('dog1', 'food', 'meat')
+print(f'{dog1.name} eats {food}.')
+setattr(dog1, 'age', dog1.age + 1)
+print(f'{dog1.name} is {dog1.age} now.')
+setattr(dog1, 'age', run)  # setattr()可将属性改为方法
+dog1.age(dog1)
 print('Attributes and methods of instance dog1:\n', dog1.__dir__())
