@@ -1,0 +1,11 @@
+address:
+  city: Shanghai
+  street: Nanjing Road
+age: 25
+hobbies:
+- 吹
+- 拉
+- 弹
+- 唱
+married: false
+name: 张三
