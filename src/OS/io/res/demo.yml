@@ -1,0 +1,27 @@
+---
+yaml:
+  - slim and flexible
+  - better for configuration
+# 可嵌入json
+  - {json: 'better for data interchange'}
+object:
+  key: value
+  array:
+    - null_value:
+    - boolean: true
+    - integer: 1
+    - int_force: !!int "123"
+    - alias: &example 这是一个别名
+    - alias: *example
+paragraph: >
+   Blank lines denote
+
+   paragraph breaks
+content: |-
+   Or we
+   can auto
+   convert line breaks
+   to save space
+alias: &foo
+  bar: baz
+alias_reuse: *foo 

@@ -15,12 +15,14 @@ name: 王二牛
 age: 25
 """
 
+print('Multiple yaml data:')
 for data in yaml.load_all(documents, Loader=yaml.SafeLoader):
     print(data)
-
 
 print('\nData from yaml file:')
 with open('demo.yml', encoding='utf-8') as f:
     data = yaml.load(f, Loader=yaml.Loader)
     print(data)
 
+print('\nDump data:')
+print(yaml.dump(data, allow_unicode=True))
