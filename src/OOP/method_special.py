@@ -1,8 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
 class People(object):
+
+    def __new__(cls, *args, **kwargs):
+        obj = super().__new__(cls)
+        return obj
+
     def __init__(self, name):
         self.name = name
 
@@ -19,19 +24,24 @@ class People(object):
     def __setattr__(self, key, value):
         print(f'set {key}={value}')
         object.__setattr__(self, key, value)
-
-    def __getattr__(self, item):
-        return f'No {item}'
+        # super().__setattr__(key, value)
+        # self.__dict__[key] = value
 
     # 实例对象访问类属性或实例属性时将调用该方法，类直接访问属性时则不调用
     # def __getattribute__(self, item):
     #     print(f'Access {item}')
     #     return super().__getattribute__(item)
+    #     # return object.__getattribute__(self, item)
+
+    # 当被调用的属性不存在时，该方法将被调用
+    def __getattr__(self, item):
+        return f'No {item}'
 
     def __delattr__(self, attr):
         print(f'Delete attribute {attr}')
         object.__delattr__(self, attr)
 
+    # 与__setattr()__不同的是，该方法针对字典方式赋值生效
     def __setitem__(self, key, value):
         print('__setitem__')
         self.__dict__[key] = value
@@ -55,7 +65,7 @@ Tom()
 Tom.age = 18
 del Tom.age
 print(Tom.age)
-Tom.__dict__['name'] = "Lucy"
+Tom['name'] = "Lucy"
 print(Tom['name'])
 Tom['gender'] = 'F'
 del Tom['gender']
