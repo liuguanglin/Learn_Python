@@ -1,39 +1,50 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
 从Python 3.6开始，字典按照插入的顺序迭代
 """
 import operator
 from collections import defaultdict
 
-d1 = {'k1': 'v1', 'k2': 'v2', 'k3': 'v3'}
-d2 = d1.copy()
-d1['k3'] = 'v33'
-d1.update({'k4': 'v4', 'k5': 'v5'})
-d1['k6'] = 'v6'
-print('k1' in d1, '\n')
-print('d1.keys()==>', d1.keys(), '\n')
-print('d1.values()==>', list(d1.values()), '\n')
-print('items():', d1.items())
-print(d1.setdefault('k88', 'v88'))
-print(d1.get('k100', 100), '\n')
-del d1['k1']
-print('d1==>', d1)
+# 创建字典的几种方法
+person = {'name': 'Dennis', 'age': 20, 'sex': 'M'}
+ext_info = dict(addr='xxxxx', phone='123456')
+
+# 更新字典
+person.update(ext_info)
+person['hobbies'] = ['sewing', 'kayaking', 'archery']
+person['phone'] = '666666'
+print(person.setdefault('score', 80))
+
+# 浅拷贝
+person_copy = person.copy()
+
+print(person)
+print('name' in person, '\n')
+print('Email:', person.get('Email', 'Null'), '\n')
+print('person.keys()==>', person.keys(), '\n')
+print('person.values()==>', list(person.values()), '\n')
+print('person.items():', person.items())
+del person['score']
 print('-' * 20)
 
-d3 = dict().fromkeys(list(range(5)), 'dog')
-print('d3==>', d3, '\n')
-
-for x, y in enumerate(d1, start=100):
+for x, y in enumerate(person, start=100):
     print('{}, {}'.format(x, y))
 
-print(sorted(d1.items(), key=lambda s: s[1], reverse=True))
-print(sorted(d1.items(), key=operator.itemgetter(1), reverse=True))
+print(sorted(ext_info.items(), key=lambda s: s[1], reverse=True))
+print(sorted(ext_info.items(), key=operator.itemgetter(1), reverse=True))
 
-d1.clear()
-del d1
+person.clear()
+del person
 
-mydict = defaultdict(lambda: 0)
-# mydict = defaultdict(int)
-print('defaultdict()==>', mydict[1])
+# 创建字典的其他方法
+dict_fromkeys = dict().fromkeys(list(range(5)), 'value')
+print('fromkeys()==>', dict_fromkeys, '\n')
+
+# mydict = defaultdict(lambda: 0)
+dict_default = defaultdict(int)
+print('defaultdict()==>', dict_default[1], '\n')
+
+lst1 = ['k1', 'k2', 'k3']
+lst2 = [1, 2]
+print(dict(list(zip(lst1, lst2))))
