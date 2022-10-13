@@ -8,7 +8,7 @@ import time
 
 arc_file = 'mytar.tgz'
 
-with tarfile.open(arc_file, 'w') as tar:
+with tarfile.open(arc_file, 'w:gz') as tar:
     tar.add('conf.d', 'conf.d.bak')  # 默认可递归添加目录
     # 添加TarInfo对象，可从文件或内存中传入二进制数据
     info = tarfile.TarInfo('notice.txt')
@@ -21,7 +21,7 @@ print(f'Is {arc_file} a tarfile? ', tarfile.is_tarfile(arc_file))
 print('tarfile.encoding: ', tarfile.ENCODING)
 
 with tarfile.open(arc_file) as tar:
-    
+    # 检查文件路径是否超出解压目录
     import os
     
     def is_within_directory(directory, target):
